@@ -15,10 +15,9 @@ class Test:
 		if self.subset == '*':
 			return self.subset[0]
 		elif re.match("^U\+", self.subset):
-			s = re.sub (r"U\+", "", self.subset)
-			return s
+			return re.sub (r"U\+", "", self.subset)
 		else:
-			return ",".join("%X" % ord(c) for (i, c) in enumerate(self.subset))
+			return ",".join("%X" % ord(c) for c in self.subset)
 
 	def get_profile_flags(self):
 		with open (self.profile_path, mode="r", encoding="utf-8") as f:
@@ -30,14 +29,9 @@ class Test:
 		profile_name = os.path.splitext(os.path.basename(self.profile_path))[0]
 
 		if self.unicodes() == "*":
-			return "%s.%s.retain-all-codepoint%s" % (font_base_name_parts[0],
-				       profile_name,
-				       font_base_name_parts[1])
+			return f"{font_base_name_parts[0]}.{profile_name}.retain-all-codepoint{font_base_name_parts[1]}"
 		else:
-			return "%s.%s.%s%s" % (font_base_name_parts[0],
-				       profile_name,
-				       self.unicodes(),
-				       font_base_name_parts[1])
+			return f"{font_base_name_parts[0]}.{profile_name}.{self.unicodes()}{font_base_name_parts[1]}"
 
 	def get_font_extension(self):
 		font_base_name = os.path.basename(self.font_path)
@@ -63,7 +57,7 @@ class SubsetTestSuite:
 		if not os.path.exists(output_dir):
 			os.mkdir(output_dir)
 		if not os.path.isdir(output_dir):
-			raise Exception("%s is not a directory." % output_dir)
+			raise Exception(f"{output_dir} is not a directory.")
 
 		return output_dir
 
