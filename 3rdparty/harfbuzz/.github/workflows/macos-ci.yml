@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install dependencies
       run: HOMEBREW_NO_AUTO_UPDATE=1 brew install pkg-config freetype glib cairo icu4c graphite2 gobject-introspection gtk-doc ninja gcovr
     - run: pip3 install meson fonttools --upgrade
