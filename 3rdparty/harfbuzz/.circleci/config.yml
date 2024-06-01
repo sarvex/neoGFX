@@ -90,7 +90,7 @@ jobs:
 
   asan-ubsan:
     docker:
-      - image: ubuntu:20.04
+      - image: ubuntu:20.10
     steps:
       - checkout
       - run: apt update || true
@@ -101,7 +101,7 @@ jobs:
 
   tsan:
     docker:
-      - image: ubuntu:20.04
+      - image: ubuntu:20.10
     steps:
       - checkout
       - run: apt update || true
@@ -112,7 +112,7 @@ jobs:
 
   msan:
     docker:
-      - image: ubuntu:20.04
+      - image: ubuntu:20.10
     steps:
       - checkout
       - run: apt update || true
@@ -124,7 +124,7 @@ jobs:
 
   clang-cxx2a:
     docker:
-      - image: ubuntu:20.04
+      - image: ubuntu:20.10
     steps:
       - checkout
       - run: apt update || true
